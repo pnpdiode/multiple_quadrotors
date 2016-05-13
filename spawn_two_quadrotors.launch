@@ -1,0 +1,711 @@
+<?xml version="1.0"?>
+
+<launch>
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="model1" default="$(find hector_quadrotor_description)/urdf/quadrotor_with_cam_left.gazebo.xacro" />
+  <arg name="model2" default="$(find hector_quadrotor_description)/urdf/quadrotor_with_cam_right.gazebo.xacro" />
+  <arg name="model" default="$(find hector_quadrotor_description)/urdf/quadrotor_with_cam.gazebo.xacro" />
+
+
+   <arg name="use_ground_truth_for_tf" default="true"/>
+   <arg name="use_ground_truth_for_control" default="true"/>
+   <arg name="use_pose_estimation" if="$(arg use_ground_truth_for_control)" default="false"/>
+   <arg name="use_pose_estimation" unless="$(arg use_ground_truth_for_control)" default="true"/>
+
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="headless" value="$(arg headless)"/>
+    <arg name="debug" value="$(arg debug)"/>
+  </include>
+<!--#######################################################################################################-->
+
+   <group ns="uav1">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav1" />
+        <arg name="tf_prefix" value="uav1" />
+        <arg name="model" value="$(arg model1)" />
+		<arg name="x" default="0"/>
+		<arg name="y" default="0"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+   <group ns="uav2">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav2" />
+        <arg name="tf_prefix" value="uav2" />
+        <arg name="model" value="$(arg model2)" />
+		<arg name="x" default="4"/>
+		<arg name="y" default="-4"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+
+
+   <group ns="uav3">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav3" />
+        <arg name="tf_prefix" value="uav3" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="6"/>
+		<arg name="y" default="4"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+
+<!--
+   <group ns="uav4">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav4" />
+        <arg name="tf_prefix" value="uav4" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="-2"/>
+		<arg name="y" default="-1"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+   <group ns="uav5">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav5" />
+        <arg name="tf_prefix" value="uav5" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="-4"/>
+		<arg name="y" default="-1"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+
+
+   <group ns="uav6">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav6" />
+        <arg name="tf_prefix" value="uav6" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="-6"/>
+		<arg name="y" default="-1"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+   <group ns="uav7">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav7" />
+        <arg name="tf_prefix" value="uav7" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="-8"/>
+		<arg name="y" default="-1"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+
+
+   <group ns="uav8">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav8" />
+        <arg name="tf_prefix" value="uav8" />
+        <arg name="model" value="$(arg model1)" />
+		<arg name="x" default="0"/>
+		<arg name="y" default="0"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+   <group ns="uav9">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav9" />
+        <arg name="tf_prefix" value="uav9" />
+        <arg name="model" value="$(arg model2)" />
+		<arg name="x" default="-2"/>
+		<arg name="y" default="0"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+   <group ns="uav10">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav10" />
+        <arg name="tf_prefix" value="uav10" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="-4"/>
+		<arg name="y" default="0"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+   <group ns="uav11">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav11" />
+        <arg name="tf_prefix" value="uav11" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="-6"/>
+		<arg name="y" default="0"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+   <group ns="uav12">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav12" />
+        <arg name="tf_prefix" value="uav12" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="-8"/>
+		<arg name="y" default="0"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+
+
+   <group ns="uav13">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav13" />
+        <arg name="tf_prefix" value="uav13" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="0"/>
+		<arg name="y" default="-2"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+   <group ns="uav14">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav14" />
+        <arg name="tf_prefix" value="uav14" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="-2"/>
+		<arg name="y" default="-2"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+   <group ns="uav15">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav15" />
+        <arg name="tf_prefix" value="uav15" />
+        <arg name="model" value="$(arg model1)" />
+		<arg name="x" default="-4"/>
+		<arg name="y" default="-2"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+   <group ns="uav16">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav16" />
+        <arg name="tf_prefix" value="uav16" />
+        <arg name="model" value="$(arg model2)" />
+		<arg name="x" default="-6"/>
+		<arg name="y" default="-2"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+   <group ns="uav17">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav17" />
+        <arg name="tf_prefix" value="uav17" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="-8"/>
+		<arg name="y" default="-2"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+   <group ns="uav18">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav18" />
+        <arg name="tf_prefix" value="uav18" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="0"/>
+		<arg name="y" default="1"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+   <group ns="uav19">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav19" />
+        <arg name="tf_prefix" value="uav19" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="-2"/>
+		<arg name="y" default="1"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+   <group ns="uav20">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav20" />
+        <arg name="tf_prefix" value="uav20" />
+        <arg name="model" value="$(arg model1)" />
+		<arg name="x" default="-4"/>
+		<arg name="y" default="1"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+   <group ns="uav21">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav21" />
+        <arg name="tf_prefix" value="uav21" />
+        <arg name="model" value="$(arg model2)" />
+		<arg name="x" default="-6"/>
+		<arg name="y" default="1"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+   <group ns="uav22">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav22" />
+        <arg name="tf_prefix" value="uav22" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="-8"/>
+		<arg name="y" default="1"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+   <group ns="uav23">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav23" />
+        <arg name="tf_prefix" value="uav23" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="0"/>
+		<arg name="y" default="-3"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+   <group ns="uav24">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav24" />
+        <arg name="tf_prefix" value="uav24" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="-2"/>
+		<arg name="y" default="-5"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+-->
+
+
+<!--
+   <group ns="uav25">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav25" />
+        <arg name="tf_prefix" value="uav25" />
+        <arg name="model" value="$(arg model1)" />
+		<arg name="x" default="-4"/>
+		<arg name="y" default="-3"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+   <group ns="uav26">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav26" />
+        <arg name="tf_prefix" value="uav26" />
+        <arg name="model" value="$(arg model2)" />
+		<arg name="x" default="-6"/>
+		<arg name="y" default="-3"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+   <group ns="uav27">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav27" />
+        <arg name="tf_prefix" value="uav27" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="-8"/>
+		<arg name="y" default="-3"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+
+   <group ns="uav28">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav28" />
+        <arg name="tf_prefix" value="uav28" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="0"/>
+		<arg name="y" default="2"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+   <group ns="uav29">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav29" />
+        <arg name="tf_prefix" value="uav29" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="-2"/>
+		<arg name="y" default="2"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+   <group ns="uav30">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav30" />
+        <arg name="tf_prefix" value="uav30" />
+        <arg name="model" value="$(arg model1)" />
+		<arg name="x" default="-4"/>
+		<arg name="y" default="2"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+   <group ns="uav31">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav31" />
+        <arg name="tf_prefix" value="uav31" />
+        <arg name="model" value="$(arg model2)" />
+		<arg name="x" default="-6"/>
+		<arg name="y" default="2"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+   <group ns="uav32">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav32" />
+        <arg name="tf_prefix" value="uav32" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="-8"/>
+		<arg name="y" default="2"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+
+   <group ns="uav33">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav33" />
+        <arg name="tf_prefix" value="uav33" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="0"/>
+		<arg name="y" default="-4"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+   <group ns="uav34">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav34" />
+        <arg name="tf_prefix" value="uav34" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="-2"/>
+		<arg name="y" default="-4"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+   <group ns="uav35">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav35" />
+        <arg name="tf_prefix" value="uav35" />
+        <arg name="model" value="$(arg model1)" />
+		<arg name="x" default="-4"/>
+		<arg name="y" default="-4"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+   <group ns="uav36">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav36" />
+        <arg name="tf_prefix" value="uav36" />
+        <arg name="model" value="$(arg model2)" />
+		<arg name="x" default="-6"/>
+		<arg name="y" default="-4"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+   <group ns="uav37">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav37" />
+        <arg name="tf_prefix" value="uav37" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="-8"/>
+		<arg name="y" default="-4"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+-->
+
+
+<!-- STD Deviation and Mean-->
+<!--
+   <group ns="uav1">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav1" />
+        <arg name="tf_prefix" value="uav1" />
+        <arg name="model" value="$(arg model1)" />
+		<arg name="x" default="10"/>
+		<arg name="y" default="0"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+   <group ns="uav2">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav2" />
+        <arg name="tf_prefix" value="uav2" />
+        <arg name="model" value="$(arg model2)" />
+		<arg name="x" default="10"/>
+		<arg name="y" default="-2"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+   <group ns="uav3">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav3" />
+        <arg name="tf_prefix" value="uav3" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="5"/>
+		<arg name="y" default="-1"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+   <group ns="uav4">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav4" />
+        <arg name="tf_prefix" value="uav4" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="0"/>
+		<arg name="y" default="-1"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+   <group ns="uav5">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav5" />
+        <arg name="tf_prefix" value="uav5" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="-5"/>
+		<arg name="y" default="-1"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+
+
+   <group ns="uav6">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav6" />
+        <arg name="tf_prefix" value="uav6" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="-10"/>
+		<arg name="y" default="-1"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+   <group ns="uav7">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav7" />
+        <arg name="tf_prefix" value="uav7" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="-15"/>
+		<arg name="y" default="-1"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+
+
+   <group ns="uav8">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav8" />
+        <arg name="tf_prefix" value="uav8" />
+        <arg name="model" value="$(arg model1)" />
+		<arg name="x" default="-20"/>
+		<arg name="y" default="-1"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+   <group ns="uav9">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav9" />
+        <arg name="tf_prefix" value="uav9" />
+        <arg name="model" value="$(arg model2)" />
+		<arg name="x" default="-25"/>
+		<arg name="y" default="-1"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+   <group ns="uav10">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav10" />
+        <arg name="tf_prefix" value="uav10" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="-30"/>
+		<arg name="y" default="-1"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+
+   <group ns="uav11">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+        <arg name="name" value="uav11" />
+        <arg name="tf_prefix" value="uav11" />
+        <arg name="model" value="$(arg model)" />
+		<arg name="x" default="-35"/>
+		<arg name="y" default="-1"/>
+		<arg name="z" default="0.3"/>
+		<arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)"/>
+		<arg name="use_ground_truth_for_control" value="$(arg use_ground_truth_for_control)"/>
+		<arg name="use_pose_estimation" value="$(arg use_pose_estimation)"/>
+     </include>
+   </group>
+-->
+
+</launch>
+
