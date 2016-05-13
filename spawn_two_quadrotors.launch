@@ -30,7 +30,6 @@
      <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
         <arg name="name" value="uav1" />
         <arg name="tf_prefix" value="uav1" />
-        <arg name="model" value="$(arg model1)" />
 		<arg name="x" default="0"/>
 		<arg name="y" default="0"/>
 		<arg name="z" default="0.3"/>
@@ -44,7 +43,6 @@
      <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
         <arg name="name" value="uav2" />
         <arg name="tf_prefix" value="uav2" />
-        <arg name="model" value="$(arg model2)" />
 		<arg name="x" default="4"/>
 		<arg name="y" default="-4"/>
 		<arg name="z" default="0.3"/>
@@ -60,7 +58,6 @@
      <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
         <arg name="name" value="uav3" />
         <arg name="tf_prefix" value="uav3" />
-        <arg name="model" value="$(arg model)" />
 		<arg name="x" default="6"/>
 		<arg name="y" default="4"/>
 		<arg name="z" default="0.3"/>
